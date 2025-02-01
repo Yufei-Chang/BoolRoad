@@ -23,12 +23,21 @@ const HomePage = () => {
         {/* Viaggi Conclusi */}
         <section>
           <h2 className="text-center mb-4">I viaggi conclusi</h2>
-          <div className="row row-cols-2 g-4">
-            <TravelCard id={2} destination="Londra" guide="Anna Bianchi" startDate="05/03/2025" endDate="12/03/2025" />
-            <TravelCard id={3} destination="Tokyo" guide="Yuki Nakamura" startDate="20/04/2025" endDate="30/04/2025" />
-            <TravelCard id={4} destination="New York" guide="John Smith" startDate="10/05/2025" endDate="20/05/2025" />
-            <TravelCard id={5} destination="Roma" guide="Luca Verdi" startDate="15/06/2025" endDate="25/06/2025" />
-          </div>
+          <div className="row row-cols-1 row-cols-md-2 g-4">
+  <div className="col">
+    <TravelCard id={2} destination="Londra" guide="Anna Bianchi" startDate="05/03/2025" endDate="12/03/2025" />
+  </div>
+  <div className="col">
+    <TravelCard id={3} destination="Tokyo" guide="Yuki Nakamura" startDate="20/04/2025" endDate="30/04/2025" />
+  </div>
+  <div className="col">
+    <TravelCard id={4} destination="New York" guide="John Smith" startDate="10/05/2025" endDate="20/05/2025" />
+  </div>
+  <div className="col">
+    <TravelCard id={5} destination="Roma" guide="Luca Verdi" startDate="15/06/2025" endDate="25/06/2025" />
+  </div>
+</div>
+
         </section>
 
       </div>
