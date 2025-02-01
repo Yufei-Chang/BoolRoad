@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <div className="container my-5 py-5">
+      <div className="container my-5 py-5 container-fluid" style={{ maxWidth: "80vw", margin: "0 auto" }}>
         
         {/* Viaggio Attuale */}
         <section className="text-center">

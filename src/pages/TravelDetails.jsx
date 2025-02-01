@@ -3,40 +3,46 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import VoyagerCard from "../components/VoyagerCard";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const TravelDetails = () => {
   const { id } = useParams();
 
+  // Dati dinamici (per ora vuoti)
+  const travel = {
+    destination: "",
+    guide: "",
+    startDate: "",
+    endDate: "",
+    description: "",
+  };
+
   return (
     <>
       <Header />
-      <div className="container my-5 py-5">
-        
+      <div className="container my-5 py-5 container-fluid" style={{ maxWidth: "80vw", margin: "0 auto" }}>
         {/* Card Dettagli Viaggio */}
-        <section className="text-center">
-          <h2 className="mb-4">Dettagli Viaggio</h2>
-          <div className="mx-auto card p-4 shadow" style={{ maxWidth: "600px" }}>
-            <h3>Destinazione: {id}</h3>
-            <p><strong>Guida:</strong> Mario Rossi</p>
-            <p><strong>Data:</strong> 01/02/2025 - 10/02/2025</p>
-            <p><strong>Descrizione:</strong> Tour della città e visita ai musei</p>
-          </div>
-        </section>
+        <div className="card p-4 shadow-lg">
+          <h2 className="text-center">Destinazione: {travel.destination || "____"}</h2>
+          <p><strong>Guida:</strong> {travel.guide || "____"}</p>
+          <p><strong>Data:</strong> {travel.startDate || "__/__/____"} - {travel.endDate || "__/__/____"}</p>
+          <p className="travel-description">
+            <strong>Descrizione dettagliata:</strong>
+            <br /> - Principali tappe: {travel.description || "____"}
+          </p>
+        </div>
 
-        <hr className="my-5" />
+        {/* Divisore */}
+        <hr className="my-5 w-75 mx-auto" />
 
-        {/* Partecipanti */}
-        <section>
-          <h2 className="text-center mb-4">I partecipanti di questo viaggio</h2>
-          <div className="row row-cols-2 g-4">
-            <VoyagerCard id={1} name="Marco" surname="Rossi" />
-            <VoyagerCard id={2} name="Laura" surname="Bianchi" />
-            <VoyagerCard id={3} name="Giovanni" surname="Neri" />
-            <VoyagerCard id={4} name="Anna" surname="Verdi" />
-          </div>
-        </section>
-
+        {/* Sezione Partecipanti */}
+        <h2 className="text-center my-4">I partecipanti di questo viaggio</h2>
+        <div className="row row-cols-1 row-cols-md-2 g-4">
+          {[...Array(10)].map((_, index) => (
+            <div className="col" key={index}>
+              <VoyagerCard id={index + 1} />
+            </div>
+          ))}
+        </div>
       </div>
       <Footer />
     </>

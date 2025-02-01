@@ -2,115 +2,65 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap
 
 const VoyagerDetails = () => {
-  const { id } = useParams(); // Otteniamo l'ID del viaggiatore dalla URL
+  const { id } = useParams();
   const navigate = useNavigate();
-
-  // Convertiamo l'ID in numero per la gestione della navigazione
   const voyagerId = parseInt(id, 10);
 
-  // Simuliamo dati dei viaggiatori (in futuro arriveranno dal backend)
-  const mockVoyagers = [
-    { id: 1, name: "Luca", surname: "Bianchi", phone: "", email: "", taxCode: "" },
-    { id: 2, name: "Giulia", surname: "Verdi", phone: "", email: "", taxCode: "" },
-    { id: 3, name: "Marco", surname: "Neri", phone: "", email: "", taxCode: "" },
-    { id: 4, name: "Elena", surname: "Rossi", phone: "", email: "", taxCode: "" }
-  ];
-
-  // Troviamo il viaggiatore attuale
-  const voyager = mockVoyagers.find(v => v.id === voyagerId);
-
-  // Funzioni di navigazione
-  const goToPreviousVoyager = () => {
-    const prevId = voyagerId > 1 ? voyagerId - 1 : mockVoyagers.length;
-    navigate(`/voyager-details/${prevId}`);
+  // Dati dinamici vuoti
+  const voyager = {
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    fiscalCode: "",
   };
-
-  const goToNextVoyager = () => {
-    const nextId = voyagerId < mockVoyagers.length ? voyagerId + 1 : 1;
-    navigate(`/voyager-details/${nextId}`);
-  };
-
-  const goBackToTravelDetails = () => {
-    navigate(-1); // Torna alla pagina precedente (TravelDetails)
-  };
-
-  const styles = {
-    voyagerDetailsCard: {
-      width: "600px",
-      display: "flex",
-      alignItems: "center",
-      border: "1px solid #ddd",
-      borderRadius: "8px",
-      padding: "20px",
-      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-      backgroundColor: "white"
-    },
-    voyagerImgContainer: {
-      width: "30%",
-      paddingRight: "20px"
-    },
-    voyagerImg: {
-      width: "100%",
-      height: "auto",
-      borderRadius: "8px"
-    },
-    voyagerInfo: {
-      flex: 1
-    },
-    voyagerCard: {
-      border: "1px solid #ddd",
-      borderRadius: "8px",
-      transition: "transform 0.2s ease-in-out",
-      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-      backgroundColor: "white",
-      cursor: "pointer"
-    }
-  };
-  
-  // Se il viaggiatore non viene trovato
-  if (!voyager) {
-    return (
-      <>
-        <Header />
-        <div className="container text-center mt-5">
-          <h2>⚠️ Viaggiatore non trovato!</h2>
-        </div>
-        <Footer />
-      </>
-    );
-  }
 
   return (
     <>
       <Header />
-      <div className="container d-flex flex-column align-items-center justify-content-center" style={{ minHeight: "80vh" }}>
-
-        {/* Card dettagli viaggiatore */}
-        <div className="card" style={styles.voyagerDetailsCard}>
-          {/* Immagine a sinistra */}
-          <div style={styles.voyagerImgContainer}>
-            <img src="/images/default-avatar.png" alt="Foto Viaggiatore" style={styles.voyagerImg} />
-          </div>
-
-          {/* Dati a destra */}
-          <div style={styles.voyagerInfo}>
-            <h3>{voyager.name} {voyager.surname}</h3>
-            <p><strong>Telefono:</strong> {voyager.phone || "N/D"}</p>
-            <p><strong>Email:</strong> {voyager.email || "N/D"}</p>
-            <p><strong>Codice Fiscale:</strong> {voyager.taxCode || "N/D"}</p>
+      <div className="container my-5 py-5 container-fluid" style={{ maxWidth: "80vw", margin: "0 auto" }}>
+        {/* Card con i Dettagli del Viaggiatore */}
+        <div className="card p-4 shadow-lg text-center">
+          <div className="row">
+            {/* Foto a sinistra */}
+            <div className="col-md-4 d-flex align-items-center">
+              <img
+                src="https://via.placeholder.com/150"
+                alt="Foto Viaggiatore"
+                className="img-fluid rounded"
+              />
+            </div>
+            {/* Dettagli a destra */}
+            <div className="col-md-8 text-start">
+              <h2>{voyager.firstName || "____"} {voyager.lastName || "____"}</h2>
+              <p><strong>Telefono:</strong> {voyager.phone || "____"}</p>
+              <p><strong>Email:</strong> {voyager.email || "____"}</p>
+              <p><strong>Codice Fiscale:</strong> {voyager.fiscalCode || "____"}</p>
+            </div>
           </div>
         </div>
 
-        {/* Sezione bottoni */}
-        <div className="d-flex justify-content-between w-100 mt-4">
-          <button className="btn btn-primary" onClick={goToPreviousVoyager}>Precedente</button>
-          <button className="btn btn-secondary" onClick={() => navigate(-1)}>Indietro</button>
-          <button className="btn btn-primary" onClick={goToNextVoyager}>Successivo</button>
+        {/* Pulsanti di Navigazione */}
+        <div className="d-flex justify-content-between mt-4">
+          <button
+            className="btn btn-secondary"
+            onClick={() => navigate(`/voyager-details`)}
+            disabled={voyagerId <= 1}
+          >
+            Precedente
+          </button>
+          <button className="btn btn-outline-dark" onClick={() => navigate(-1)}>
+            Indietro
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => navigate(`/voyager-details/${voyagerId + 1}`)}
+          >
+            Successivo
+          </button>
         </div>
-
       </div>
       <Footer />
     </>
