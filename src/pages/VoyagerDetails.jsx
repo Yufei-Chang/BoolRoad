@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, NavLink } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -44,22 +44,22 @@ function VoyagerDetails() {
 
         {/* Pulsanti di Navigazione */}
         <div className="d-flex justify-content-between mt-4">
-          <button
+          <NavLink
             className="btn btn-primary"
-            onClick={() => navigate(`/voyager-details`)}
+            to={`/voyager-details/${voyagerId - 1}`}
             disabled={voyagerId <= 1}
           >
             Precedente
-          </button>
-          <button className="btn btn-secondary" onClick={() => navigate(-1)} disabled={voyagerId <= 1}>
+          </NavLink>
+          <NavLink className="btn btn-secondary" onClick={() => navigate(-1)}>
             Indietro
-          </button>
-          <button
+          </NavLink>
+          <NavLink
             className="btn btn-primary"
-            onClick={() => navigate(`/voyager-details/${voyagerId + 1}`)}
+            to={`/voyager-details/${voyagerId + 1}`}
           >
             Successivo
-          </button>
+          </NavLink>
         </div>
       </div>
       <Footer />

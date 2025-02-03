@@ -12,7 +12,7 @@ const Footer = () => {
           <a href="/community" className="text-white mx-2">Community</a> |
           <a href="/info" className="text-white mx-2">Info Utili</a>
         </p>
-        <p className="mb-0">© 2025 Agenzia Viaggi - Tutti i diritti riservati</p>
+        <p className="mb-0">© 2025 BoolRoad Agenzia Viaggi - Tutti i diritti riservati</p>
       </div>
     </footer>
   );
