@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const VoyagerDetails = () => {
+function VoyagerDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const voyagerId = parseInt(id, 10);
@@ -45,17 +45,17 @@ const VoyagerDetails = () => {
         {/* Pulsanti di Navigazione */}
         <div className="d-flex justify-content-between mt-4">
           <button
-            className="btn btn-secondary"
+            className="btn btn-primary"
             onClick={() => navigate(`/voyager-details`)}
             disabled={voyagerId <= 1}
           >
             Precedente
           </button>
-          <button className="btn btn-outline-dark" onClick={() => navigate(-1)}>
+          <button className="btn btn-secondary" onClick={() => navigate(-1)} disabled={voyagerId <= 1}>
             Indietro
           </button>
           <button
-            className="btn btn-secondary"
+            className="btn btn-primary"
             onClick={() => navigate(`/voyager-details/${voyagerId + 1}`)}
           >
             Successivo

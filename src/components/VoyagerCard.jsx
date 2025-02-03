@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const VoyagerCard = ({ id }) => {
+function VoyagerCard({id}) {
   return (
     <div className="card shadow-sm p-3">
       <h5 className="card-title text-center">Nome: {"____"} Cognome: {"____"}</h5>
